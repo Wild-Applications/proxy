@@ -1,0 +1,17 @@
+{
+  "routes":
+  [
+    {
+      "apiRoute":"/users",
+      "serviceUrl":"http://service.user:1295"
+    },
+    {
+      "apiRoute":"/product",
+      "serviceUrl":"http://service.product:1295"
+    },
+    {
+      "apiRoute":"/location",
+      "serviceUrl":"http://location.blueapp.com"
+    }
+  ]
+}

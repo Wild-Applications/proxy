@@ -1,0 +1,92 @@
+#%RAML 1.0
+---
+title: Bleu App
+baseUri: http://api.bleu.com/{version}
+version: v1
+protocols: [ HTTPS ]
+mediaType: application/json
+
+types:
+  User:
+    type: object
+    properties:
+      _id: string
+
+
+/users:
+  description: Endpoint for all functionality involving user accounts
+  post:
+    description: Allows a new user to be created
+    body:
+      application/json:
+        type: object
+        example: { "username" : "admin", "password" : "*****", "email" : "admin@admin.com" }
+    responses:
+      201:
+        body:
+          application/json:
+            type: User
+            example: { "_id" : "xxxxx", "username" : "admin" }
+      400:
+        body:
+          application/json:
+            type: Error
+            example: { "code" : "0004", "message": "Unable to create new user" }
+  /version:
+    description: Endpoint to give the current running API version
+    get:
+      description: Returns current API version
+  /login:
+    description: Endpoint to handle user logins
+    post:
+      description: Verifies a username and password
+      body:
+        application/json:
+          type: object
+          example: { "username" : "admin", "password" : "*****" }
+      responses:
+        201:
+          body:
+            application/json:
+              type: User
+              example: { "_id" : "xxxxx", "username" : "admin" }
+        404:
+          body:
+            application/json:
+              type: Error
+              example: { "code" : "0003", "message" : "No user exists with that username" }
+        401:
+          body:
+            application/json:
+              type: Error
+              example: { "code" : "0005", "message" : "Username or Password did not match" }
+  /{id}:
+    description: Endpoint to handle user accounts that have already been assigned an ID
+    get:
+      description: Retrieves a user matching the supplied ID
+      responses:
+        201:
+          body:
+            application/json:
+              type: User
+              example: { "username" : "admin" }
+        404:
+          body:
+            application/json:
+              type: error
+              example: { "code" : "0003", "message" : "No user exists with that ID" }
+    put:
+      description: Updates a user matching the supplied ID
+      body:
+        application/json:
+          type: object
+          example: { "username?" : "admin", "password?" : "*****", "email?" : "admin@admin.com" }
+    delete:
+      description: Deletes a user matching the supplied ID
+      responses:
+        201:
+        404:
+          body:
+            application/json:
+              type: error
+              example: { "code" : "0003", "message" : "No user exists with that ID" }
