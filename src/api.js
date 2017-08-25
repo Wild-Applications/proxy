@@ -32,7 +32,7 @@ var proxy = new httpProxy.createProxyServer();
 function handleRoute(route, req, res) {
   var url = req.url;
   var parsedUrl = urlHelper.parse(req);
-
+  console.log(parsedUrl.path);
   if (parsedUrl.path.indexOf(route.apiRoute) === 0) {
     if(typeof parsedUrl.path[route.apiRoute.length] == 'undefined' || parsedUrl.path[route.apiRoute.length] == "/"){
       req.url = url.replace(route.apiRoute, '');

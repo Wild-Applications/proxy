@@ -6,12 +6,8 @@
       "serviceUrl":"http://service.user:1295"
     },
     {
-      "apiRoute":"/product",
-      "serviceUrl":"http://service.product:1295"
-    },
-    {
-      "apiRoute":"/location",
-      "serviceUrl":"http://location.blueapp.com"
+      "apiRoute":"/manage",
+      "serviceUrl":"http://service.manage:1295"
     }
   ]
 }
