@@ -8,6 +8,14 @@
     {
       "apiRoute":"/manage",
       "serviceUrl":"http://service.manage:1295"
+    },
+    {
+      "apiRoute":"/orders",
+      "serviceUrl":"http://service.order:1295"
+    },
+    {
+      "apiRoute":"/ios",
+      "serviceUrl":"http://service.ios:1295"
     }
   ]
 }
