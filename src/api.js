@@ -44,7 +44,7 @@ function handleRoute(route, req, res) {
 
 function returnError(req, res) {
   res.writeHead(502, {'Content-Type': 'text/plain'});
-  res.write('Bad Gateway for: Mike' + req.url);
+  res.write('Bad Gateway for:' + req.url);
   res.end();
 }
 
