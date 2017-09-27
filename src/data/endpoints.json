@@ -14,8 +14,8 @@
       "serviceUrl":"http://service.order:1295"
     },
     {
-      "apiRoute":"/ios",
-      "serviceUrl":"http://service.ios:1295"
+      "apiRoute":"/mobile",
+      "serviceUrl":"http://service.mobile:1295"
     }
   ]
 }
