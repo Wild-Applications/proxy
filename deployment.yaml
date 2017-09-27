@@ -13,7 +13,7 @@ metadata:
   labels:
     app: proxy
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -21,9 +21,11 @@ spec:
     spec:
       containers:
       - name: proxy
-        image: blueapp/proxy:0.0.2
+        image: wildapplications/proxy:latest
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+        - name: regsecret
 ---
 apiVersion: v1
 kind: Service
