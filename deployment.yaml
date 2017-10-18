@@ -53,10 +53,19 @@ metadata:
     #ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: api.tabapp.co.uk
+  - host: api.wildapplications.com
     http:
       paths:
       - path: /
         backend:
           serviceName: service
           servicePort: 80
+---
+apiVersion: v1
+data:
+  .dockercfg: eyJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOnsidXNlcm5hbWUiOiJ3aWxkYXBwbGljYXRpb25zIiwicGFzc3dvcmQiOiIzMDA1OTVCVCIsImVtYWlsIjoibWljaGFlbEB3aWxkYXBwbGljYXRpb25zLmNvbSIsImF1dGgiOiJkMmxzWkdGd2NHeHBZMkYwYVc5dWN6b3pNREExT1RWQ1ZBPT0ifX0=
+kind: Secret
+metadata:
+  name: regsecret
+  namespace: proxy
+type: kubernetes.io/dockercfg
