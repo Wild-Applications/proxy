@@ -36,7 +36,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 8080
+  - port: 80
     targetPort: 8080
   selector:
     app: proxy
@@ -52,15 +52,11 @@ metadata:
     # kubernetes.io/ingress.class: "gce"
     ingress.kubernetes.io/rewrite-target: /
 spec:
-  # tls:
-  # - hosts:
-  #   - echo.example.com
-  #   secretName: echoserver-tls
   rules:
-  - host: echo.example.com
+  - host: api.tabapp.co.uk
     http:
       paths:
-      - path: /test
+      - path: /
         backend:
           serviceName: service
-          servicePort: 8080
+          servicePort: 80
