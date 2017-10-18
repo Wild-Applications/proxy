@@ -32,7 +32,6 @@ var proxy = new httpProxy.createProxyServer();
 function handleRoute(route, req, res) {
   var url = req.url;
   var parsedUrl = urlHelper.parse(req);
-  console.log(parsedUrl.path);
   if (parsedUrl.path.indexOf(route.apiRoute) === 0) {
     if(typeof parsedUrl.path[route.apiRoute.length] == 'undefined' || parsedUrl.path[route.apiRoute.length] == "/"){
       req.url = url.replace(route.apiRoute, '');
@@ -54,6 +53,13 @@ function returnError(req, res) {
 //
 //
 
+server.on('error', function (err, req, res) {
+  res.writeHead(500, {
+    'Content-Type': 'text/plain'
+  });
+
+  res.end('Something went wrong. And we are reporting a custom error message.');
+});
 
 //begin listening on port 8080
 server.listen(8080, function(){
