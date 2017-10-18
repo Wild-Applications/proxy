@@ -22,7 +22,7 @@ spec:
       containers:
       - name: proxy
         image: wildapplications/proxy:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
       imagePullSecrets:
