@@ -9,16 +9,16 @@ endpoints = require('./data/endpoints.json').routes;
 
 // create and start http server
 var server = http.createServer(function (req, res) {
-  if(req.url != "/"){
+  if(req.url == "/" || req.url == "/healthz"){
+    res.writeHead(200);
+    res.end();
+  }else{
     for (id in endpoints) {
       if (endpoints.hasOwnProperty(id) && handleRoute(endpoints[id], req, res)) {
         return;
       }
     }
     returnError(req, res);
-  }else{
-    res.writeHead(200);
-    res.end();
   }
 });
 
