@@ -31,13 +31,18 @@ var proxy = new httpProxy.createProxyServer();
 // proxy HTTP request / response to / from destination upstream service if route matches
 function handleRoute(route, req, res) {
   var url = req.url;
-  var parsedUrl = urlHelper.parse(req);
-  if (parsedUrl.path.indexOf(route.apiRoute) === 0) {
-    if(typeof parsedUrl.path[route.apiRoute.length] == 'undefined' || parsedUrl.path[route.apiRoute.length] == "/"){
-      req.url = url.replace(route.apiRoute, '');
-      proxy.web(req, res, { target: route.serviceUrl });
-      return true;
+  if(url != '/'){
+    var parsedUrl = urlHelper.parse(req);
+    if (parsedUrl.path.indexOf(route.apiRoute) === 0) {
+      if(typeof parsedUrl.path[route.apiRoute.length] == 'undefined' || parsedUrl.path[route.apiRoute.length] == "/"){
+        req.url = url.replace(route.apiRoute, '');
+        proxy.web(req, res, { target: route.serviceUrl });
+        return true;
+      }
     }
+  }else{
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end();
   }
 }
 
@@ -61,11 +66,6 @@ server.on('error', function (err, req, res) {
 
   res.end('Something went wrong. And we are reporting a custom error message.');
 });
-
-server.listen('/', function(req, res){
-  res.writeHead(200);
-  res.end("Hello world");
-})
 
 //begin listening on port 8080
 server.listen(8080, function(){
