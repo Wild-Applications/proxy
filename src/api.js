@@ -62,6 +62,11 @@ server.on('error', function (err, req, res) {
   res.end('Something went wrong. And we are reporting a custom error message.');
 });
 
+server.listen('/', function(req, res){
+  res.writeHead(200);
+  res.end("Hello world");
+})
+
 //begin listening on port 8080
 server.listen(8080, function(){
   console.log("REST API Abstraction Layer listening on ", server.address())
