@@ -48,15 +48,19 @@ metadata:
   name: ingress
   namespace: proxy
   annotations:
-    # kubernetes.io/tls-acme: "true"
+    kubernetes.io/tls-acme: "true"
     kubernetes.io/ingress.class: "gce"
-    ingress.kubernetes.io/rewrite-target: /
+    #ingress.kubernetes.io/rewrite-target: /
 spec:
+  tls:
+  - hosts:
+    - api.wildapplications.com
+    secretName: ingress-tls
   rules:
   - host: api.wildapplications.com
     http:
       paths:
-      - path: /
+      - path: /*
         backend:
           serviceName: service
           servicePort: 80
