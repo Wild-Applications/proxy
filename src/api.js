@@ -58,7 +58,7 @@ function returnError(req, res) {
 //
 //
 
-server.on('error', function (err, req, res) {
+proxy.on('error', function (err, req, res) {
   console.log(err);
   res.writeHead(500, {
     'Content-Type': 'text/plain'
